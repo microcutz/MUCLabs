@@ -20,11 +20,12 @@ import android.widget.DatePicker;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
-    DatePicker dpBDay;
-    Button submitBtn;
-    mcSaveData mcSDPrefs;
-    SharedPreferences mySharedPrefs;
-    FragmentManager fmAboutDialogue;
+    DatePicker dpBDay; // Lab 1
+    Button submitBtn; // Lab 1
+    mcSaveData mcSDPrefs; // Lab 2
+    SharedPreferences mySharedPrefs; // Lab 2
+    FragmentManager fmAboutDialogue; // Lab 2
+    String sOutputMsg; // Lab 3
 
     //****************************************************************
     //onCreate
@@ -59,9 +60,23 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View view) {
         //Create an instance of the MondaysChild Class
         mondaysChild mcYourDay = new mondaysChild(dpBDay.getDayOfMonth(), dpBDay.getMonth(), dpBDay.getYear());
+        // Create an instance of the astrology Class
+        astrology usersStarSign = new astrology(dpBDay.getDayOfMonth(), dpBDay.getMonth()+1); // Lab 3
+
+        // Save preferences
+        mcSDPrefs.savePreferences("mc_DOW", mcYourDay.getiDOW());
+        mcSDPrefs.savePreferences("mc_Month", mcYourDay.getiMonth());
+        mcSDPrefs.savePreferences("mc_DayBorn", mcYourDay.getsDOW());
+        mcSDPrefs.savePreferences("mc_StarSign", usersStarSign.getsStarSign()); // Lab 3
 
         //Starting new Intent
         Intent mcOutput_Screen = new Intent(getApplicationContext(), mcOutputScreen.class);
+
+        //Send data to the new Activity
+        sOutputMsg = mcYourDay.getsOutputMsg() + "\nYour star sign is: " + usersStarSign.getsStarSign(); // Lab 3
+        mcOutput_Screen.putExtra("mcOutputMsg",sOutputMsg); // Lab 3
+        mcOutput_Screen.putExtra("mcStarSign", usersStarSign.getsStarSign()); // Lab 3
+
         //Log the output data
         Log.e("n", mcYourDay.getsOutputMsg());
         //Start the new activity

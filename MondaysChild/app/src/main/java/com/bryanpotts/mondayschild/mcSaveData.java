@@ -9,25 +9,22 @@ import android.util.Log;
  */
 public class mcSaveData extends Activity {
 
-    //************************
-    //
-    //************************
-
+    // *********
+    // Variables
+    // *********
 //region
-
     SharedPreferences mcSharedprefs;
 
     private int mcSDDOW;
     private int mcSDMonth;
     private String mcSDDayBorn;
+    private String mcSDStarSign; // Lab 3
 //endregion
 
-
-    /**
-    //Declare getters and setters
-    */
+    // ***************************
+    // Declare getters and setters
+    // ***************************
 //region
-
     private void setmcSDDOW(int isDOW) {
         this.mcSDDOW = isDOW;
     }
@@ -51,16 +48,28 @@ public class mcSaveData extends Activity {
     public String getmcSDDayBorn() {
         return mcSDDayBorn;
     }
+
+    private void setmcSDStarSign (String mcSDStarSign) {
+        this.mcSDStarSign = mcSDStarSign; // Lab 3
+    }
+
+    public String getmcSDStarSign() {
+        return mcSDStarSign; // Lab 3
+    }
 //endregion
+
     // *******************************
     // Declare constructor and date
     // manipulation method.
     // ******************************
-
+//region
     public mcSaveData(SharedPreferences mcSDPrefs) {
+
         setmcSDDOW(1);
         setmcSDDOW(1);
         setmcSDDayBorn("Sunday");
+        setmcSDStarSign("January"); // Lab 3
+
         try {
             this.mcSharedprefs = mcSDPrefs;
         }
@@ -68,6 +77,7 @@ public class mcSaveData extends Activity {
         {
             Log.e("n", "Pref manager is Null");
         }
+
 
         setDefaultPrefs();
     }
@@ -88,5 +98,7 @@ public class mcSaveData extends Activity {
         savePreferences("mc_DOW", 1);
         savePreferences("mc_Month", 1);
         savePreferences("mc_DayBorn", "Empty");
+        savePreferences("mc_StarSign", "Empty"); // Lab 3
     }
+// endregion
 }
