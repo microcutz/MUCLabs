@@ -99,6 +99,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         mcOutput_Screen.putExtra("mcStarSign", usersStarSign.getsStarSign()); // Lab 32
         */
         //Log.v("TAG", userStarSignInfo.getStarSign().toString());
+
+        sOutputMsg = mcYourDay.getsOutputMsg(); // Lab 5
+        mcOutput_Screen.putExtra("mcOutputMsg", sOutputMsg); // Lab 5
         // Send serialised Object to the new activity for display - Lab 4
         mcOutput_Screen.putExtra("starSignInfoOne", userStarSignInfo); // lab 4
 //        Log.v("TAG", mcOutput_Screen.getDataString());

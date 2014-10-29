@@ -88,7 +88,7 @@ public class mcStarSignsInfoDBMgr extends SQLiteOpenHelper {
 
     }
 
-    // ============================================================================================
+    // ===========================================================================================
     // Check if the database already exist to avoid re-copying the file each time you open the application.
     // @return true if it exists, false if it doesn't
     // ============================================================================================
