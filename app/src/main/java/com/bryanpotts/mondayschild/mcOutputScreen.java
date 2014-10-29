@@ -20,7 +20,7 @@ public class mcOutputScreen extends Activity implements View.OnClickListener{
     Button btnDatePick;
     ImageView ivStarSign; // Lab 3
 
-    Button btnSavedData;
+    Button btnShowSavedData;
 
     TextView tvStarSign; // Lab 4
     TextView tvStarSignDates; // Lab 4
@@ -36,8 +36,8 @@ public class mcOutputScreen extends Activity implements View.OnClickListener{
         btnDatePick.setOnClickListener(this);
 
         // Setup, access and listen for the view saved data button
-        btnSavedData = (Button) findViewById(R.id.btnSavedData);
-        btnSavedData.setOnClickListener(this);
+        btnShowSavedData = (Button) findViewById(R.id.btnSavedData);
+        btnShowSavedData.setOnClickListener(this);
 
         // Display text
         tvStarSign = (TextView) findViewById(R.id.tvStarSign); // Lab 4
@@ -53,8 +53,10 @@ public class mcOutputScreen extends Activity implements View.OnClickListener{
 
         //Get the intent and data
         Intent iMainAct = getIntent();
-
-        mcStarSignInfo starSignInfo = (mcStarSignInfo) iMainAct.getSerializableExtra("sStarSignInfo"); // Lab 4
+        String test = (String) iMainAct.getSerializableExtra("starSignInfo");
+        //Log.e(test, "test");
+        mcStarSignsInfo starSignInfo = (mcStarSignsInfo) iMainAct.getSerializableExtra("starSignInfoOne"); // Lab 4
+        //Log.e(starSignInfo.toString(), "starSingInfo contents");
         tvStarSign.setText(starSignInfo.getStarSign()); // Lab 4
         tvStarSignDates.setText(starSignInfo.getStarSignDates()); // Lab 4
         tvStarSignChars.setText(starSignInfo.getStarSignCharacteristics()); // Lab 4
@@ -64,7 +66,7 @@ public class mcOutputScreen extends Activity implements View.OnClickListener{
         int imgResID = appContext.getResources().getIdentifier(sImagePath, "drawable", "com.bryanpotts.mondayschild"); // Lab 3
 
         ivStarSign.setImageResource(imgResID); // Lab 3
-        //Log.d(Integer.toString(imgResID), "imgResID");
+        Log.d(Integer.toString(imgResID), "imgResID");
         //mcOutput.setText(iMainAct.getStringExtra("mcOutputMsg"));
 
 

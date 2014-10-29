@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     FragmentManager fmAboutDialogue; // Lab 2
     String sOutputMsg; // Lab 3
 
-    mcStarSignInfo userStarSigninfo; // Lab 4
+    mcStarSignsInfo userStarSignInfo; // Lab 4
 
     //****************************************************************
     //onCreate
@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         Log.e("n", "message");
 
-        userStarSigninfo = new mcStarSignInfo(); // Lab 4
+        userStarSignInfo = new mcStarSignsInfo(); // Lab 4
 
     }
 
@@ -81,7 +81,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
 
         // Retrieve Star Sign Info
-        userStarSigninfo = dbStarSignMgr.findStarSign(usersStarSign.getsStarSign()); // Lab 4
+        userStarSignInfo = dbStarSignMgr.findStarSign(usersStarSign.getsStarSign()); // Lab 4
 
         // Save preferences
         mcSDPrefs.savePreferences("mc_DOW", mcYourDay.getiDOW());
@@ -96,11 +96,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         /*
         sOutputMsg = mcYourDay.getsOutputMsg() + "\nYour star sign is: " + usersStarSign.getsStarSign(); // Lab 3
         mcOutput_Screen.putExtra("mcOutputMsg",sOutputMsg); // Lab 3
-        mcOutput_Screen.putExtra("mcStarSign", usersStarSign.getsStarSign()); // Lab 3
+        mcOutput_Screen.putExtra("mcStarSign", usersStarSign.getsStarSign()); // Lab 32
         */
+        //Log.v("TAG", userStarSignInfo.getStarSign().toString());
+        // Send serialised Object to the new activity for display - Lab 4
+        mcOutput_Screen.putExtra("starSignInfoOne", userStarSignInfo); // lab 4
+//        Log.v("TAG", mcOutput_Screen.getDataString());
 
-        // Send serialised Object to t new activity for display - Lab 4
-        mcOutput_Screen.putExtra("starSignInfo", userStarSigninfo); // lab 4
         //Log the output data
         Log.e("n", mcYourDay.getsOutputMsg());
         //Start the new activity
