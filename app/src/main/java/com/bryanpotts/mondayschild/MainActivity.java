@@ -5,6 +5,7 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -42,6 +43,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Lab 6
         setContentView(R.layout.activity_main);// app main UI screen
         //Create an instance of the DatePicker Object for the Birthday
         dpBDay = (DatePicker) findViewById(R.id.datePickerBDay);
@@ -124,6 +126,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            case R.id.mBio: // Lab 6
+                Intent mcBioDraw = new Intent(this, mcBioActivity.class);
+                this.startActivity(mcBioDraw);
+                return true;
             case R.id.mQuit:
                 finish();
                 return true;

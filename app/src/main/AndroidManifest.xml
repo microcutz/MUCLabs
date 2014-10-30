@@ -26,6 +26,10 @@
             android:name=".mcSavingDataOutput"
             android:label="@string/app_name">
         </activity>
+        <activity
+            android:name=".mcBioActivity"
+            android:label="Mondays Child">
+            </activity>
 
     </application>
 
