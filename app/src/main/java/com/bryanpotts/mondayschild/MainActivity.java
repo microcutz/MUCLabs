@@ -126,6 +126,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            case R.id.mMap: // Lab 7
+                Intent mcMap = new Intent(this, mcMapActivity.class);
+                this.startActivity(mcMap);
+                return true;
             case R.id.mBio: // Lab 6
                 Intent mcBioDraw = new Intent(this, mcBioActivity.class);
                 this.startActivity(mcBioDraw);
