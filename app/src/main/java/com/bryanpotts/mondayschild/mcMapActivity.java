@@ -7,9 +7,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -47,6 +51,7 @@ public class mcMapActivity extends FragmentActivity {
 
         mapDataLst = new ArrayList<mcMapData>();
         mcMapDataDBMgr mapDB = new mcMapDataDBMgr(this, "mapEKFamous5.s3db", null, 1);
+
         try
         {
             mapDB.dbCreate();
@@ -55,6 +60,16 @@ public class mcMapActivity extends FragmentActivity {
             e.printStackTrace();
         }
 
+        int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+        if(status == ConnectionResult.SUCCESS) {
+            //Success! Do what you want
+
+        }else{
+            GooglePlayServicesUtil.getErrorDialog(status, this, status);
+        }
+            //MapsInitializer.initialize(getApplicationContext());
+
+
         mapDataLst = mapDB.allMapData();
         SetUpMap();
         AddMarkers();
@@ -62,6 +77,7 @@ public class mcMapActivity extends FragmentActivity {
 
     public void SetUpMap() {
         mapStarSigns = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();    // Create the map and apply to the variable
+        //mapStarSigns.moveCamera(CameraUpdateFactory.newLatLngZoom(latlangEKCentre, 12));
         if (mapStarSigns != null) {
             mapStarSigns.moveCamera(CameraUpdateFactory.newLatLngZoom(latlangEKCentre, 12));        // Set the default position to EK
             mapStarSigns.setMyLocationEnabled(true);                                                // Turn on GPS
@@ -80,6 +96,7 @@ public class mcMapActivity extends FragmentActivity {
 
         /* For all the marker options in dbList list */
         for (int i = 0; i < mapDataLst.size(); i++) {
+
             mapData = mapDataLst.get(i);
             mrkTitle = mapData.getFirstname() + " " + mapData.getSurname() + " Occupation: " + mapData.getOccupation();
             mrkText = "Star Sign: " + mapData.getStarSign();
@@ -92,7 +109,6 @@ public class mcMapActivity extends FragmentActivity {
 
         float anchorX; // Create anchorX
         float anchorY; // Create anchorY
-
         /* on the condition the anchor is to be centred */
         if (centreAnchor) {
             anchorX = 0.5f; // Centre X
@@ -102,7 +118,8 @@ public class mcMapActivity extends FragmentActivity {
             anchorY = 1.0f; // Bottom Y
         }
 
-        // Create Marker options from the input varaiables
+        // Create Marker options from the input variables
+        //MarkerOptions marker = new MarkerOptions().title(title).snippet(snippet).icon(BitmapDescriptorFactory.defaultMarker(markerColour)).anchor(anchorX, anchorY).position(position);
         MarkerOptions marker = new MarkerOptions().title(title).snippet(snippet).icon(BitmapDescriptorFactory.defaultMarker(markerColour)).anchor(anchorX, anchorY).position(position);
 
         return marker; // Return marker

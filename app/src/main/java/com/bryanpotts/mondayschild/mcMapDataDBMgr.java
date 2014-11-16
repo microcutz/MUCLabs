@@ -16,13 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+
+
 /**
  * Created by bryan on 12/11/14.
  */
-public class mcMapDataDBMgr extends SQLiteOpenHelper {
+public class mcMapDataDBMgr extends SQLiteOpenHelper{
 
     private static final int DB_VER = 1;
-    private static final String DB_PATH = "/data/data/uk.ac.gcu.mondayschild.app/databases/";
+    private static final String DB_PATH = "/data/data/com.bryanpotts.mondayschild/databases/";
     private static final String DB_NAME = "mapEKFamous5.s3db";
     private static final String TBL_MAPEKFAME = "mapEKFame5";
 
@@ -98,7 +100,7 @@ public class mcMapDataDBMgr extends SQLiteOpenHelper {
 
         try{
             String dbPath = DB_PATH + DB_NAME;
-            db = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READONLY);
+            db = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READWRITE);
             db.setLocale(Locale.getDefault());
             db.setVersion(1);
 
